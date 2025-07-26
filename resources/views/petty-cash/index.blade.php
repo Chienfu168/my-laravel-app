@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">零用金紀錄列表</h2>
+    <h1 class="mb-4 fw-bold">零用金紀錄列表</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -16,8 +16,8 @@
         <p>目前尚無資料。</p>
     @else
     <div class="table-responsive">
-        <table class="table table-bordered table-striped align-middle">
-            <thead class="table-dark">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark text-center">
                 <tr>
                     <th>#</th>
                     <th>日期</th>

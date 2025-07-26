@@ -44,6 +44,9 @@
                             <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin') }}">後台管理</a>
+                        </li>                        
+                        <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button class="btn btn-link nav-link" type="submit">登出</button>

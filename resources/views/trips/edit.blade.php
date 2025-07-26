@@ -8,7 +8,7 @@
         @method('PUT')
         <div class="mb-3">
             <label for="date" class="form-label">日期</label>
-            <input type="date" name="date" id="date" class="form-control" value="{{ $trip->date }}" required>
+            <input type="date" name="date" class="form-control" value="{{ old('date', $trip->date ? $trip->date->format('Y-m-d') : '') }}">
         </div>
         <div class="mb-3">
             <label for="person" class="form-label">人員</label>

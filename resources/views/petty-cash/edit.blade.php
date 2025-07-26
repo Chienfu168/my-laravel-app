@@ -20,7 +20,7 @@
 
         <div class="mb-3">
             <label for="date" class="form-label">日期</label>
-            <input type="date" name="date" id="date" class="form-control" value="{{ old('date', $pettyCash->date) }}" required>
+        <input type="date" name="date" value="{{ old('date', \Carbon\Carbon::parse($pettyCash->date)->format('Y-m-d')) }}" class="form-control">
         </div>
 
         <div class="mb-3">

@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>帳戶管理</h1>
+    <h1 class="mb-4 fw-bold">帳戶管理</h2>
+
 
     <a href="{{ route('accounts.create') }}" class="btn btn-primary mb-3">新增帳戶</a>
 
@@ -13,8 +14,8 @@
     @endif
 
     @if ($accounts->count())
-        <table class="table table-bordered table-hover">
-            <thead class="table-light">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark text-center">
                 <tr>
                     <th>名稱</th>
                     <th>銀行</th>

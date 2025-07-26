@@ -13,12 +13,13 @@ public function up(): void
 {
     Schema::create('trips', function (Blueprint $table) {
         $table->id();
-        $table->string('person'); // 參與人
-        $table->string('description'); // 描述
-        $table->date('date'); // 日期
-        $table->string('location'); // 地點
-        $table->integer('amount'); // 金額
-        $table->timestamps();
+        $table->string('person'); // 👈 新增這一行
+        $table->text('description')->nullable();
+        $table->date('date')->nullable();
+        $table->string('location')->nullable();
+        $table->decimal('amount', 10, 2)->default(0);
+        $table->timestamps(); // 👈 Laravel 會自動建立 created_at 和 updated_at 欄位
+
     });
 }
 

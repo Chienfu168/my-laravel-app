@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\PettyCash;
 use Illuminate\Http\Request;
+use App\Models\Project; // ✅ 加上這一行
+
 
 class PettyCashController extends Controller
 {
@@ -21,7 +23,8 @@ class PettyCashController extends Controller
      */
     public function create()
     {
-        return view('petty-cash.create');
+    $projects = Project::all(); // ✅ 先定義 $projects
+    return view('petty-cash.create', compact('projects'));
     }
 
     /**
@@ -54,8 +57,8 @@ class PettyCashController extends Controller
      */
     public function edit(PettyCash $pettyCash)
     {
-        return view('petty-cash.edit', compact('pettyCash'));
-    }
+    $projects = Project::all();
+    return view('petty-cash.edit', compact('pettyCash', 'projects'));    }
 
     /**
      * 更新指定的零用金紀錄

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\Project;
+
 
 class TransactionController extends Controller
 {
@@ -21,8 +23,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('transactions.create');
-    }
+   $projects = Project::all();
+    return view('transactions.create', compact('projects'));    }
 
     /**
      * Store a newly created resource in storage.
@@ -31,14 +33,14 @@ class TransactionController extends Controller
     {
         $validated = $request->validate([
             'date' => 'required|date',
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0',
             'description' => 'nullable|string|max:255',
+            'project_id' => 'nullable|exists:projects,id',
         ]);
 
         Transaction::create($validated);
 
-        return redirect()->route('transactions.index')
-            ->with('success', '交易紀錄已成功新增');
+        return redirect()->route('transactions.index')->with('success', '交易已建立');
     }
 
     /**
@@ -54,25 +56,26 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        return view('transactions.edit', compact('transaction'));
+    $projects = Project::all();
+    return view('transactions.edit', compact('transaction', 'projects'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction)
-    {
-        $validated = $request->validate([
-            'date' => 'required|date',
-            'amount' => 'required|numeric',
-            'description' => 'nullable|string|max:255',
-        ]);
+public function update(Request $request, Transaction $transaction)
+{
+    $validated = $request->validate([
+        'date' => 'required|date',
+        'amount' => 'required|numeric|min:0',
+        'description' => 'nullable|string|max:255',
+        'project_id' => 'nullable|exists:projects,id',
+    ]);
 
-        $transaction->update($validated);
+    $transaction->update($validated);
 
-        return redirect()->route('transactions.index')
-            ->with('success', '交易紀錄已更新');
-    }
+    return redirect()->route('transactions.index')->with('success', '交易已更新');
+}
 
     /**
      * Remove the specified resource from storage.

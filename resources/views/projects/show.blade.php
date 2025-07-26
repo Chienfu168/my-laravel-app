@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>專案詳細資料</h1>
+    <h1 class="mb-4 fw-bold">專案詳細資料</h1>
 
     <div class="card mt-3">
         <div class="card-body">

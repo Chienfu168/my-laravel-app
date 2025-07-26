@@ -12,7 +12,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all(); // 可改成 paginate(10)
+        $projects = Project::withSum('transactions', 'amount')
+                        ->withSum('pettyCashes', 'amount')
+                        ->orderBy('start_date')
+                        ->get();
+
         return view('projects.index', compact('projects'));
     }
 
@@ -33,6 +37,7 @@ class ProjectController extends Controller
             'name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
+            'budget' => 'nullable|numeric|min:0', // ✅ 加上這行
         ]);
 
         Project::create($validated);
@@ -46,6 +51,9 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         return view('projects.show', compact('project'));
+        $project->load(['transactions', 'pettyCashes']);
+
+    
     }
 
     /**
@@ -65,6 +73,8 @@ class ProjectController extends Controller
             'name' => 'required|string|max:255',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
+            'budget' => 'nullable|numeric|min:0', // ✅ 加上這行
+
         ]);
 
         $project->update($validated);

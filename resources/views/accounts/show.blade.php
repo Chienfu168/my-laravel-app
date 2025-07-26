@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>帳戶詳細資料</h1>
+    <h1 class="mb-4 fw-bold">帳戶詳細資料</h1>
+    
 
     <div class="card mb-3">
         <div class="card-body">

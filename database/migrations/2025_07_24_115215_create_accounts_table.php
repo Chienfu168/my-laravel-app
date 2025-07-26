@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');        // ← 確保有這行
-            $table->string('number');      // ← 確保有這行
-            $table->string('bank_name');   // ← 確保有這行
-            $table->timestamps();
-        });
+    Schema::create('accounts', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('account_number')->nullable();
+        $table->string('bank')->nullable();
+        $table->decimal('balance', 12, 2)->nullable();
+        $table->text('note')->nullable();
+        $table->timestamps();
+    });
     }
 
     /**

@@ -64,10 +64,12 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-         $validated = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'number' => 'required|string|max:50',
-            'bank_name' => 'nullable|string|max:255',
+            'account_number' => 'nullable|string|max:50',
+            'bank' => 'nullable|string|max:255',
+            'balance' => 'nullable|numeric',
+            'note' => 'nullable|string|max:500',
         ]);
 
         $account->update($validated);

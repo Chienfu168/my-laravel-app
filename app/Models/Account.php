@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $fillable = ['name', 'number', 'bank_name'];
+protected $fillable = [
+    'name',
+    'account_number',
+    'bank',
+    'balance',
+    'note',
+];
 }

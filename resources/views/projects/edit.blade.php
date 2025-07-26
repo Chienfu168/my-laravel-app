@@ -23,7 +23,10 @@
             <label for="name" class="form-label">專案名稱</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $project->name) }}" required>
         </div>
-
+        <div class="form-group">
+            <label for="budget">預算（元）</label>
+            <input type="number" step="0.01" name="budget" class="form-control" value="{{ old('budget', $project->budget ?? '') }}">
+        </div>
         <div class="mb-3">
             <label for="description" class="form-label">說明</label>
             <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $project->description) }}</textarea>

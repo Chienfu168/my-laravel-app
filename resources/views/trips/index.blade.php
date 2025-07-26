@@ -2,10 +2,11 @@
 
 @section('content')
 <div class="container">
-    <h1>出差記錄一覽表</h1>
+    <h1 class="mb-4 fw-bold">出差記錄一覽表</h1>
+
     <a href="{{ route('trips.create') }}" class="btn btn-primary mb-3">新增出差紀錄</a>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark text-center">
             <tr>
                 <th>日期</th>
                 <th>人員</th>
@@ -17,7 +18,7 @@
         <tbody>
             @foreach($trips as $trip)
                 <tr>
-                    <td>{{ $trip->date }}</td>
+                    <td>{{ \Carbon\Carbon::parse($trip->date)->format('Y-m-d') }}</td>
                     <td>{{ $trip->person }}</td>
                     <td>{{ $trip->description }}</td>
                     <td>${{ number_format($trip->amount, 2) }}</td>

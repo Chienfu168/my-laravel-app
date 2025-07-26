@@ -2,19 +2,17 @@
 
 @section('content')
 <div class="container">
-    <h1>交易詳情</h1>
+    <h1 class="mb-4 fw-bold">交易詳細資訊</h1>
 
-    <div class="mb-3">
-        <strong>日期：</strong> {{ $transaction->date }}
-    </div>
-    <div class="mb-3">
-        <strong>金額：</strong> {{ $transaction->amount }}
-    </div>
-    <div class="mb-3">
-        <strong>說明：</strong> {{ $transaction->description }}
+    <div class="card">
+        <div class="card-body">
+            <p><strong>日期：</strong> {{ $transaction->date }}</p>
+            <p><strong>金額：</strong> {{ number_format($transaction->amount, 2) }} 元</p>
+            <p><strong>說明：</strong> {{ $transaction->description }}</p>
+            <p><strong>所屬專案：</strong> {{ $transaction->project?->name ?? '無' }}</p>
+        </div>
     </div>
 
-    <a href="{{ route('transactions.index') }}" class="btn btn-secondary">返回</a>
-    <a href="{{ route('transactions.edit', $transaction) }}" class="btn btn-warning">編輯</a>
+    <a href="{{ route('transactions.index') }}" class="btn btn-secondary mt-3">返回列表</a>
 </div>
 @endsection
